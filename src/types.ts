@@ -79,7 +79,7 @@ export type Control = {
   label: string;
   name: string;
   defaultValue: any;
-  setValue: ValueSetter;
+  setValue?: ValueSetter;
 } & (
   | TextControl
   | SelectControl

@@ -15,7 +15,7 @@ const define = (value: any, defaultValue: any) =>
   value !== undefined ? value : defaultValue;
 
 const buildControlType = <T extends Control>(
-  defaultConfig: Partial<T>,
+  defaultConfig: T,
   validate?: (config?: Partial<T>) => void,
   setup?: (config: Partial<T>) => Partial<T>
 ) => (config: Partial<T>) => {
@@ -34,12 +34,14 @@ export const Controls = {
   text: buildControlType({
     type: "text",
     name: "text",
+    label: "Text",
     defaultValue: ""
   }),
   select: buildControlType<SelectControl & Control>(
     {
       type: "select",
       name: "select",
+      label: "Select",
       options: [],
       defaultValue: ""
     },
@@ -54,6 +56,8 @@ export const Controls = {
     {
       type: "number",
       name: "number",
+      label: "Number",
+      step: 1,
       defaultValue: 0
     },
     () => {},
@@ -64,12 +68,14 @@ export const Controls = {
   checkbox: buildControlType<Control>({
     type: "checkbox",
     name: "checkbox",
+    label: "Checkbox",
     defaultValue: false
   }),
   multiselect: buildControlType<MultiselectControl & Control>(
     {
       type: "multiselect",
       name: "multiselect",
+      label: "Multiselect",
       options: [],
       defaultValue: []
     },
@@ -84,6 +90,7 @@ export const Controls = {
     {
       type: "custom",
       name: "custom",
+      label: "Custom",
       render: () => null,
       defaultValue: undefined
     },
