@@ -4,7 +4,13 @@ import Checkbox from "../Checkbox/Checkbox";
 import TextInput from "../TextInput/TextInput";
 import Select from "../Select/Select";
 import { NodeDispatchContext, ContextContext } from "../../context";
-import { ControlRenderCallback, ControlTypes, InputData, SelectOption, ValueSetter } from "../../types";
+import {
+  ControlRenderCallback,
+  ControlTypes,
+  InputData,
+  SelectOption,
+  ValueSetter
+} from "../../types";
 import { NodesActionType } from "../../nodesReducer";
 
 interface CommonProps {
@@ -168,20 +174,22 @@ const Control = (props: ControlProps) => {
       case "custom": {
         const { render } = props as CustomProps;
 
-        return render?.(
-          data,
-          onChange,
-          executionContext,
-          triggerRecalculation,
-          {
-            label,
-            name,
-            portName,
-            inputLabel,
-            defaultValue
-          },
-          allData
-        ) ?? null;
+        return (
+          render?.(
+            data,
+            onChange,
+            executionContext,
+            triggerRecalculation,
+            {
+              label,
+              name,
+              portName,
+              inputLabel,
+              defaultValue
+            },
+            inputData
+          ) ?? null
+        );
       }
       default:
         return <div>Control</div>;
